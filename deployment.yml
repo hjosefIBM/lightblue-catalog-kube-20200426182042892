@@ -1,9 +1,12 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: catalog-lightblue-deployment
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: catalog
   template:
     metadata:
       name: pod-catalog
@@ -12,7 +15,7 @@ spec:
     spec:
       containers:
         - name: catalog
-          image: "us.icr.io/cldstd01-ns/catalog:latest"
+          image: "us.icr.io/cldstd03-ns/catalog:latest"
           imagePullPolicy: Always
           livenessProbe:
             tcpSocket:
